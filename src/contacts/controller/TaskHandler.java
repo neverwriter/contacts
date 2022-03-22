@@ -23,19 +23,18 @@ public class TaskHandler {
     public Contact createContact() {
         Scanner scanner = new Scanner(System.in);
 
-        Contact newContact = new Contact();
+        Contact.ContactBuilder contactBuilder = new Contact.ContactBuilder();
 
         TextPrinter.printEnterName();
-
-        newContact.setName(scanner.nextLine());
+        contactBuilder.setName(scanner.nextLine());
 
         TextPrinter.printEnterSurname();
-
-        newContact.setSurname(scanner.nextLine());
+        contactBuilder.setSurname(scanner.nextLine());
 
         TextPrinter.printEnterPhoneNumber();
+        contactBuilder.setPhoneNumber(scanner.nextLine());
 
-        newContact.setPhoneNumber(scanner.nextLine());
+        Contact newContact = contactBuilder.build();
 
         return newContact;
     }
