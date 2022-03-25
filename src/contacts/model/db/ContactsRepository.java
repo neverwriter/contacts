@@ -19,9 +19,28 @@ public class ContactsRepository {
         return instance;
     }
 
+    public ArrayList<Contact> getContactsRepository() {
+        return contactsRepository;
+    }
+
     public void addContact(Contact newContact){
 
         contactsRepository.add(newContact);
+
+    }
+
+    public boolean isContactListEmpty(){
+        return contactsRepository.isEmpty();
+    }
+
+    public boolean removeContact(int contactNumber){
+        if(isContactListEmpty()){
+            return false;
+        } else {
+
+            contactsRepository.remove(contactNumber-1);
+            return true;
+        }
 
     }
 }

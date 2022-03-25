@@ -13,16 +13,9 @@ public class Contact {
         this.phoneNumber = phoneNumber;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setSurname(String surname) {
-        this.surname = surname;
-    }
-
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
+    @Override
+    public String toString() {
+        return name + " " + surname + ", " + phoneNumber;
     }
 
     public static class ContactBuilder{
@@ -47,6 +40,8 @@ public class Contact {
             this.phoneNumber = phoneNumber;
             return this;
         }
+
+
 
         public Contact build(){
             return new Contact(name, surname, phoneNumber);

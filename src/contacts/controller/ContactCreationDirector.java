@@ -5,19 +5,19 @@ import contacts.view.TextPrinter;
 
 import java.util.Scanner;
 
-public class TaskHandler {
+public class ContactCreationDirector {
 
-    private static TaskHandler taskHandler;
+    private static ContactCreationDirector contactCreationDirector;
 
-    private TaskHandler(){}
+    private ContactCreationDirector(){}
 
-    public static TaskHandler getTaskHandler() {
+    public static ContactCreationDirector getContactCreationDirector() {
 
-        if (taskHandler == null) {
-            taskHandler = new TaskHandler();
+        if (contactCreationDirector == null) {
+            contactCreationDirector = new ContactCreationDirector();
         }
 
-        return taskHandler;
+        return contactCreationDirector;
     }
 
     public Contact createContact() {
@@ -34,8 +34,6 @@ public class TaskHandler {
         TextPrinter.printEnterPhoneNumber();
         contactBuilder.setPhoneNumber(scanner.nextLine());
 
-        Contact newContact = contactBuilder.build();
-
-        return newContact;
+        return contactBuilder.build();
     }
 }
