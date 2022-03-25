@@ -4,6 +4,7 @@ import contacts.controller.DataBaseFeeder;
 import contacts.controller.ContactCreationDirector;
 import contacts.controller.command.Command;
 import contacts.controller.command.CommandReader;
+import contacts.controller.handler.strategy.TaskCountStrategy;
 import contacts.controller.handler.strategy.TaskHandlerContext;
 import contacts.controller.handler.strategy.TaskRemoveStrategy;
 import contacts.model.db.ContactsRepository;
@@ -46,7 +47,8 @@ public class Menu {
                         break;
 
                     case COUNT:
-                        System.out.println("count");
+                        taskHandlerContext.setTaskHandlerStrategy(new TaskCountStrategy());
+                        taskHandlerContext.executeStrategy(command);
                         break;
 
                     case LIST:
@@ -62,7 +64,7 @@ public class Menu {
                 }
 
                 TextPrinter.printEnterAction();
-                System.out.println("basbcjas");
+
                 inputText = CommandReader.readCommand();
 
                 command = Command.valueOf(inputText.toUpperCase(Locale.ROOT));

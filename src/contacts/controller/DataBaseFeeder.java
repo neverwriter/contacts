@@ -13,13 +13,13 @@ public class DataBaseFeeder {
 
         Contact newContact = contactBuilder.setName("Patryk")
                 .setSurname("Lewczuk")
-                .setPhoneNumber("+48 600-600-800").build();
+                .setPhoneNumber("+4 600-600-800").build();
 
         contactsRepository.addContact(newContact);
 
         Contact newContact1 = contactBuilder.setName("Michal")
                 .setSurname("Kowal")
-                .setPhoneNumber("+48 600-520-800").build();
+                .setPhoneNumber("+4 600-520-800").build();
 
         contactsRepository.addContact(newContact1);
     }

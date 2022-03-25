@@ -1,5 +1,8 @@
 package contacts.model;
 
+import contacts.controller.verification.InputVerification;
+import contacts.view.TextPrinter;
+
 public class Contact {
 
     private String name;
@@ -37,7 +40,12 @@ public class Contact {
         }
 
         public ContactBuilder setPhoneNumber(String phoneNumber) {
-            this.phoneNumber = phoneNumber;
+            if(InputVerification.isPhoneNumberValid(phoneNumber)){
+                this.phoneNumber = phoneNumber;
+            } else {
+                this.phoneNumber = "[no number]";
+                TextPrinter.printPhoneNumberWrong();
+            }
             return this;
         }
 

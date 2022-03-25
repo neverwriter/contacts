@@ -11,7 +11,7 @@ public class TextPrinter {
     private final static String ENTER_SURNAME = "Enter the surname of person: ";
     private final static String ENTER_PHONE_NUMBER = "Enter the number: ";
     private final static String RECORD_CREATED = "The record added.";
-    private final static String PHONE_BOOK_CREATED = "A Phone Book with a single record created!";
+    private final static String PHONE_NUMBER_WRONG = "Wrong number format!";
     private final static String ENTER_ACTION= "Enter action (add, remove, edit, count, list, exit): ";
     private final static String SELECT_RECORD = "Select a record: ";
     private final static String RECORD_REMOVED = "The record removed!";
@@ -33,8 +33,8 @@ public class TextPrinter {
         System.out.println(RECORD_CREATED);
     }
 
-    public static void printPhoneBookCreated(){
-        System.out.println(PHONE_BOOK_CREATED);
+    public static void printPhoneNumberWrong(){
+        System.out.println(PHONE_NUMBER_WRONG);
     }
 
     public static void printEnterAction() {
@@ -67,5 +67,9 @@ public class TextPrinter {
 
     public static void printNoRecords(String commandType){
         System.out.printf("%s%s!\n", NO_RECORDS, commandType.toLowerCase(Locale.ROOT));
+    }
+
+    public static void printCountOfRecords(int numberOfRecords){
+        System.out.printf("The Phone Book has %d records.\n", numberOfRecords);
     }
 }
