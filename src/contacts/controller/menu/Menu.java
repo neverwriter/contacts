@@ -3,10 +3,7 @@ package contacts.controller.menu;
 import contacts.controller.DataBaseFeeder;
 import contacts.controller.command.Command;
 import contacts.controller.command.CommandReader;
-import contacts.controller.handler.strategy.TaskCountStrategy;
-import contacts.controller.handler.strategy.TaskEditStrategy;
-import contacts.controller.handler.strategy.TaskHandlerContext;
-import contacts.controller.handler.strategy.TaskRemoveStrategy;
+import contacts.controller.handler.strategy.*;
 import contacts.model.contact.ConcreteContactFactory;
 import contacts.model.contact.ContactFactory;
 import contacts.model.db.ContactsRepository;
@@ -16,7 +13,7 @@ import java.util.Locale;
 
 public class Menu {
 
-     private static final TaskHandlerContext taskHandlerContext = new TaskHandlerContext();
+    private static final TaskHandlerContext taskHandlerContext = new TaskHandlerContext();
 
 
     public static void menu() {
@@ -55,8 +52,9 @@ public class Menu {
                         taskHandlerContext.executeStrategy(command);
                         break;
 
-                    case LIST:
-                        TextPrinter.printContactList(contactsRepository.getContactsRepository());
+                    case INFO:
+                        taskHandlerContext.setTaskHandlerStrategy(new TaskInfoStrategy());
+                        taskHandlerContext.executeStrategy(command);
                         break;
 
                     case FEED:
@@ -67,6 +65,7 @@ public class Menu {
                         System.out.println("Unknown command");
                 }
 
+                TextPrinter.printNextLine();
                 TextPrinter.printEnterAction();
 
                 inputText = CommandReader.readCommand();

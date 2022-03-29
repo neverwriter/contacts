@@ -16,11 +16,12 @@ public class TextPrinter {
     private final static String GENDER_WRONG = "Bad gender!";
     private final static String RECORD_CREATED = "The record added.";
     private final static String PHONE_NUMBER_WRONG = "Wrong number format!";
-    private final static String ENTER_ACTION= "Enter action (add, remove, edit, count, list, exit): ";
+    private final static String ENTER_ACTION = "Enter action (add, remove, edit, count, info, exit): ";
     private final static String SELECT_RECORD = "Select a record: ";
     private final static String RECORD_REMOVED = "The record removed!";
     private final static String NO_RECORDS = "No records to ";
-    private final static String SELECT_FIELD = "Select a field (name, surname, number): ";
+    private final static String SELECT_FIELD = "Select a field (name, surname, birth, gender number): ";
+    private final static String ENTER_TYP_OF_CONTACT = "Enter the type (person, organization): ";
 
     public static void printEnterName() {
         System.out.print(ENTER_NAME);
@@ -97,5 +98,9 @@ public class TextPrinter {
 
     public static void printSelectField(){
         System.out.print(SELECT_FIELD);
+    }
+
+    public static void printNextLine() {
+        System.out.print("\n");
     }
 }

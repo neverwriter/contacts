@@ -12,7 +12,7 @@ public enum Command {
     ADD("ADD"),
     REMOVE("REMOVE"),
     COUNT("COUNT"),
-    LIST("LIST"),
+    INFO("INFO"),
     FEED("FEED"),
     NUMBER("NUMBER"),
     NAME("NAME"),

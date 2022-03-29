@@ -1,12 +1,14 @@
 package contacts.controller.handler.strategy;
 
 import contacts.controller.command.Command;
+import contacts.model.contact.Contact;
 import contacts.model.db.ContactsRepository;
 import contacts.view.TextPrinter;
 
 public class TaskEditStrategy implements TaskHandlerStrategy {
 
     ContactsRepository contactsRepository = ContactsRepository.getInstance();
+    TaskHandler taskHandler = TaskHandler.getInstance();
 
     @Override
     public void execute(Command command) {
@@ -18,12 +20,8 @@ public class TaskEditStrategy implements TaskHandlerStrategy {
 
         TextPrinter.printContactList(contactsRepository.getContactsRepository());
 
-        TextPrinter.printSelectRecord();
+        Contact contactForEdition = taskHandler.getContactByItsNumber(contactsRepository);
 
-//        int contactNumber = CommandReader.readNumberOfContact();
-//
-//        if (contactsRepository.getContactsRepository().size() >= contactNumber) {
-//            Contact contactForEdition = contactsRepository.getContactByNumber(contactNumber);
 //            Scanner scanner = new Scanner(System.in);
 //
 //            TextPrinter.printSelectField();
