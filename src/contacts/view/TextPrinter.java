@@ -10,6 +10,7 @@ public class TextPrinter {
     private final static String ENTER_NAME = "Enter the name: ";
     private final static String ENTER_SURNAME = "Enter the surname: ";
     private final static String ENTER_PHONE_NUMBER = "Enter the number: ";
+    private final static String ENTER_ADDRESS = "Enter the address: ";
     private final static String ENTER_BIRTH_DATE = "Enter the birth date: ";
     private final static String BIRTH_DATE_WRONG = "Bad birth date!";
     private final static String ENTER_GENDER = "Enter the gender (M, F): ";
@@ -34,6 +35,8 @@ public class TextPrinter {
     public static void printEnterPhoneNumber() {
         System.out.print(ENTER_PHONE_NUMBER);
     }
+
+    public static void printEnterAddress() {System.out.print(ENTER_ADDRESS);}
 
     public static void printEnterBirthDate() {
         System.out.print(ENTER_BIRTH_DATE);
@@ -98,6 +101,10 @@ public class TextPrinter {
 
     public static void printSelectField(){
         System.out.print(SELECT_FIELD);
+    }
+
+    public static void printEnterTypeOfContact() {
+        System.out.print(ENTER_TYP_OF_CONTACT);
     }
 
     public static void printNextLine() {

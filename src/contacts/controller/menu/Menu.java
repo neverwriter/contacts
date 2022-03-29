@@ -36,8 +36,9 @@ public class Menu {
 
                     case ADD:
                         ContactFactory contactFactory = new ConcreteContactFactory();
-
-                        contactsRepository.addContact(contactFactory.getContact("person"));
+                        TextPrinter.printEnterTypeOfContact();
+                        String inputContactType = CommandReader.readCommand();
+                        contactsRepository.addContact(contactFactory.getContact(inputContactType));
                         TextPrinter.printRecordCreated();
 
                         break;

@@ -52,8 +52,8 @@ public class Person extends Contact {
                 "\nBirth date: " + birthDate +
                 "\nGender: " + gender +
                 "\nNumber: " + super.phoneNumber.getPhoneNumber() +
-                "\nTime created: " + super.timeOfCreation.withSecond(0) +
-                "\nTime last edit: " + super.timeOfLastEdit.withSecond(0);
+                "\nTime created: " + super.timeOfCreation.withSecond(0).withNano(0) +
+                "\nTime last edit: " + super.timeOfLastEdit.withSecond(0).withNano(0);
     }
 
     public static class PersonBuilder {
@@ -65,8 +65,8 @@ public class Person extends Contact {
         private String gender;
 
 
-        public PersonBuilder() {
-        }
+        public PersonBuilder() {}
+
         public PersonBuilder setName(String name) {
             this.name = name;
             return this;
