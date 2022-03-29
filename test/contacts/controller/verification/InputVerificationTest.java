@@ -27,9 +27,39 @@ public class InputVerificationTest {
     }
 
     @Test
+    public void itShouldReturnTrueWhenPhoneNumberHasNoNumbers() {
+        // Given
+        String phoneNumber ="+(phone)";
+        // When
+        // Then
+        Assert.assertTrue(InputVerification.isPhoneNumberValid(phoneNumber));
+
+    }
+
+    @Test
+    public void itShouldReturnTrueWhenPhoneNumberHasOnlyOneNumber() {
+        // Given
+        String phoneNumber ="9";
+        // When
+        // Then
+        Assert.assertTrue(InputVerification.isPhoneNumberValid(phoneNumber));
+
+    }
+
+    @Test
     public void itShouldReturnTrueWhenPhoneNumberHasNoParenthesis() {
         // Given
         String phoneNumber ="0 123 456-789-ABcd";
+        // When
+        // Then
+        Assert.assertTrue(InputVerification.isPhoneNumberValid(phoneNumber));
+
+    }
+
+    @Test
+    public void itShouldReturnTrueWhenPhoneNumberHasParenthesisInside() {
+        // Given
+        String phoneNumber ="123 (456)-789-ABcd";
         // When
         // Then
         Assert.assertTrue(InputVerification.isPhoneNumberValid(phoneNumber));
@@ -50,6 +80,16 @@ public class InputVerificationTest {
     public void itShouldReturnFalseWhenPhoneNumberHasNoSpace() {
         // Given
         String phoneNumber ="+0(123)456-789-9999";
+        // When
+        // Then
+        Assert.assertFalse(InputVerification.isPhoneNumberValid(phoneNumber));
+
+    }
+
+    @Test
+    public void itShouldReturnFalseWhenPhoneNumberThirdGroupHasOneNumber() {
+        // Given
+        String phoneNumber ="123 456 9";
         // When
         // Then
         Assert.assertFalse(InputVerification.isPhoneNumberValid(phoneNumber));

@@ -1,12 +1,14 @@
 package contacts.controller.menu;
 
 import contacts.controller.DataBaseFeeder;
-import contacts.controller.ContactCreationDirector;
 import contacts.controller.command.Command;
 import contacts.controller.command.CommandReader;
 import contacts.controller.handler.strategy.TaskCountStrategy;
+import contacts.controller.handler.strategy.TaskEditStrategy;
 import contacts.controller.handler.strategy.TaskHandlerContext;
 import contacts.controller.handler.strategy.TaskRemoveStrategy;
+import contacts.model.contact.ConcreteContactFactory;
+import contacts.model.contact.ContactFactory;
 import contacts.model.db.ContactsRepository;
 import contacts.view.TextPrinter;
 
@@ -18,7 +20,7 @@ public class Menu {
 
 
     public static void menu() {
-        ContactCreationDirector contactCreationDirector = ContactCreationDirector.getContactCreationDirector();
+
         ContactsRepository contactsRepository = ContactsRepository.getInstance();
 
         try {
@@ -31,12 +33,14 @@ public class Menu {
 
                 switch (command) {
                     case EDIT:
-                        System.out.println("edit");
+                        taskHandlerContext.setTaskHandlerStrategy(new TaskEditStrategy());
+                        taskHandlerContext.executeStrategy(command);
                         break;
 
                     case ADD:
+                        ContactFactory contactFactory = new ConcreteContactFactory();
 
-                        contactsRepository.addContact(contactCreationDirector.createContact());
+                        contactsRepository.addContact(contactFactory.getContact("person"));
                         TextPrinter.printRecordCreated();
 
                         break;

@@ -13,7 +13,10 @@ public enum Command {
     REMOVE("REMOVE"),
     COUNT("COUNT"),
     LIST("LIST"),
-    FEED("FEED");
+    FEED("FEED"),
+    NUMBER("NUMBER"),
+    NAME("NAME"),
+    SURNAME("SURNAME");
 
 
     private final String command;

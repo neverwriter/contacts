@@ -1,6 +1,6 @@
 package contacts.model.db;
 
-import contacts.model.Contact;
+import contacts.model.contact.Contact;
 
 import java.util.ArrayList;
 
@@ -42,5 +42,13 @@ public class ContactsRepository {
             return true;
         }
 
+    }
+
+    public Contact getContactByNumber(int contactNumber){
+        return contactsRepository.get(contactNumber-1);
+    }
+
+    public void updateContactByNumber(Contact editedContact, int contactNumber){
+        contactsRepository.set(contactNumber-1, editedContact);
     }
 }

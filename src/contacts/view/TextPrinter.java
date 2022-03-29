@@ -1,6 +1,6 @@
 package contacts.view;
 
-import contacts.model.Contact;
+import contacts.model.contact.Contact;
 
 import java.util.ArrayList;
 import java.util.Locale;
@@ -16,6 +16,7 @@ public class TextPrinter {
     private final static String SELECT_RECORD = "Select a record: ";
     private final static String RECORD_REMOVED = "The record removed!";
     private final static String NO_RECORDS = "No records to ";
+    private final static String SELECT_FIELD = "Select a field (name, surname, number): ";
 
     public static void printEnterName() {
         System.out.print(ENTER_NAME);
@@ -46,8 +47,9 @@ public class TextPrinter {
         int counter = 1;
 
         for (Contact contact: contacts) {
+            
+            System.out.printf("%d. %s\n",counter, contact.nameToString());
 
-            System.out.printf("%d. %s\n",counter, contact.toString());
             counter++;
         }
 
@@ -71,5 +73,9 @@ public class TextPrinter {
 
     public static void printCountOfRecords(int numberOfRecords){
         System.out.printf("The Phone Book has %d records.\n", numberOfRecords);
+    }
+
+    public static void printSelectField(){
+        System.out.print(SELECT_FIELD);
     }
 }

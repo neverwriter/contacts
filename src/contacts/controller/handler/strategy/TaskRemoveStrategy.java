@@ -12,13 +12,12 @@ public class TaskRemoveStrategy implements TaskHandlerStrategy {
     @Override
     public void execute(Command command) {
 
-        TextPrinter.printContactList(contactsRepository.getContactsRepository());
-
-
         if (contactsRepository.isContactListEmpty()) {
             TextPrinter.printNoRecords(command.getCommand());
             return;
         }
+
+        TextPrinter.printContactList(contactsRepository.getContactsRepository());
 
         TextPrinter.printSelectRecord();
         if (contactsRepository.removeContact(CommandReader.readNumberOfContact())) {
