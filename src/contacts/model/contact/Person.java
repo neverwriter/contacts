@@ -1,5 +1,8 @@
 package contacts.model.contact;
 
+import contacts.controller.verification.InputVerification;
+import contacts.view.TextPrinter;
+
 public class Person extends Contact {
 
     private String surname;
@@ -82,9 +85,31 @@ public class Person extends Contact {
             return this;
         }
 
+        public PersonBuilder setBirthDate(String birthDate){
+            if(InputVerification.isBirthDateValid(birthDate)){
+                this.birthDate = birthDate;
+            } else {
+                TextPrinter.printBirthDateWrong();
+                this.birthDate = "[no data]";
+            }
+
+            return this;
+        }
+
+        public PersonBuilder setGender(String gender){
+            if(InputVerification.isGenderValid(gender)){
+                this.gender = gender;
+            } else {
+                TextPrinter.printGenderWrong();
+                this.gender = "[no data]";
+            }
+
+            return this;
+        }
+
 
         public Person build() {
-            return new Person(name, surname, phoneNumber, "[no data]", "[no data]");
+            return new Person(name, surname, phoneNumber, birthDate, gender);
         }
     }
 }

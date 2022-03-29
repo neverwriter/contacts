@@ -7,9 +7,13 @@ import java.util.Locale;
 
 public class TextPrinter {
 
-    private final static String ENTER_NAME = "Enter the name of person: ";
-    private final static String ENTER_SURNAME = "Enter the surname of person: ";
+    private final static String ENTER_NAME = "Enter the name: ";
+    private final static String ENTER_SURNAME = "Enter the surname: ";
     private final static String ENTER_PHONE_NUMBER = "Enter the number: ";
+    private final static String ENTER_BIRTH_DATE = "Enter the birth date: ";
+    private final static String BIRTH_DATE_WRONG = "Bad birth date!";
+    private final static String ENTER_GENDER = "Enter the gender (M, F): ";
+    private final static String GENDER_WRONG = "Bad gender!";
     private final static String RECORD_CREATED = "The record added.";
     private final static String PHONE_NUMBER_WRONG = "Wrong number format!";
     private final static String ENTER_ACTION= "Enter action (add, remove, edit, count, list, exit): ";
@@ -30,6 +34,22 @@ public class TextPrinter {
         System.out.print(ENTER_PHONE_NUMBER);
     }
 
+    public static void printEnterBirthDate() {
+        System.out.print(ENTER_BIRTH_DATE);
+    }
+
+    public static void printBirthDateWrong() {
+        System.out.println(BIRTH_DATE_WRONG);
+    }
+
+    public static void printEnterGender() {
+        System.out.print(ENTER_GENDER);
+    }
+
+    public static void printGenderWrong() {
+        System.out.println(GENDER_WRONG);
+    }
+
     public static void printRecordCreated(){
         System.out.println(RECORD_CREATED);
     }
@@ -47,7 +67,7 @@ public class TextPrinter {
         int counter = 1;
 
         for (Contact contact: contacts) {
-            
+
             System.out.printf("%d. %s\n",counter, contact.nameToString());
 
             counter++;

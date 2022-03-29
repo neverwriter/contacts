@@ -28,6 +28,12 @@ public class PersonCreationDirector {
         TextPrinter.printEnterSurname();
         personBuilder.setSurname(scanner.nextLine());
 
+        TextPrinter.printEnterBirthDate();
+        personBuilder.setBirthDate(scanner.nextLine());
+
+        TextPrinter.printEnterGender();
+        personBuilder.setGender(scanner.nextLine());
+
         TextPrinter.printEnterPhoneNumber();
         personBuilder.setPhoneNumber(scanner.nextLine());
 
