@@ -18,4 +18,8 @@ public abstract class Contact {
     }
 
     public abstract String nameToString();
+
+    public void setTimeOfLastEdit() {
+        this.timeOfLastEdit = LocalDateTime.now();
+    }
 }

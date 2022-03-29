@@ -4,9 +4,6 @@ import contacts.controller.DataBaseFeeder;
 import contacts.controller.command.Command;
 import contacts.controller.command.CommandReader;
 import contacts.controller.handler.strategy.*;
-import contacts.model.contact.ConcreteContactFactory;
-import contacts.model.contact.ContactFactory;
-import contacts.model.db.ContactsRepository;
 import contacts.view.TextPrinter;
 
 import java.util.Locale;
@@ -18,15 +15,24 @@ public class Menu {
 
     public static void menu() {
 
-        ContactsRepository contactsRepository = ContactsRepository.getInstance();
-
         try {
-            TextPrinter.printEnterAction();
-            String inputText = CommandReader.readCommand();
+//            TextPrinter.printEnterAction();
+//            String inputText = CommandReader.readCommand();
+//
+//            Command command = Command.valueOf(inputText.toUpperCase(Locale.ROOT));
+            String inputText;
+            Command command;
 
-            Command command = Command.valueOf(inputText.toUpperCase(Locale.ROOT));
+            boolean isRun = true;
 
-            while (!command.equals(Command.EXIT)) {
+            while (isRun) {
+
+                TextPrinter.printNextLine();
+                TextPrinter.printEnterAction();
+
+                inputText = CommandReader.readCommand();
+
+                command = Command.valueOf(inputText.toUpperCase(Locale.ROOT));
 
                 switch (command) {
                     case EDIT:
@@ -35,12 +41,8 @@ public class Menu {
                         break;
 
                     case ADD:
-                        ContactFactory contactFactory = new ConcreteContactFactory();
-                        TextPrinter.printEnterTypeOfContact();
-                        String inputContactType = CommandReader.readCommand();
-                        contactsRepository.addContact(contactFactory.getContact(inputContactType));
-                        TextPrinter.printRecordCreated();
-
+                        taskHandlerContext.setTaskHandlerStrategy(new TaskAddStrategy());
+                        taskHandlerContext.executeStrategy(command);
                         break;
 
                     case REMOVE:
@@ -62,17 +64,17 @@ public class Menu {
                         DataBaseFeeder.feedDataBase();
                         break;
 
+                    case EXIT:
+                        isRun = false;
+//                        TextPrinter.printNextLine();
+                        break;
                     default:
                         System.out.println("Unknown command");
                 }
 
-                TextPrinter.printNextLine();
-                TextPrinter.printEnterAction();
 
-                inputText = CommandReader.readCommand();
-
-                command = Command.valueOf(inputText.toUpperCase(Locale.ROOT));
             }
+
 
         } catch (IllegalArgumentException exception) {
             System.out.println(exception.getMessage());

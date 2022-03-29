@@ -9,6 +9,8 @@ public class TaskHandler {
 
     private static TaskHandler instance;
 
+    private int contactNumber;
+
     private TaskHandler() {}
 
     public static TaskHandler getInstance() {
@@ -18,10 +20,14 @@ public class TaskHandler {
         return instance;
     }
 
+    public int getContactNumber() {
+        return contactNumber;
+    }
+
     public Contact getContactByItsNumber(ContactsRepository contactsRepository) {
         TextPrinter.printSelectRecord();
 
-        int contactNumber = CommandReader.readNumberOfContact();
+        this.contactNumber = CommandReader.readNumberOfContact();
 
         if (contactsRepository.getContactsRepository().size() >= contactNumber) {
             return contactsRepository.getContactByNumber(contactNumber);

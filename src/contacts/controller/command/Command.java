@@ -16,7 +16,10 @@ public enum Command {
     FEED("FEED"),
     NUMBER("NUMBER"),
     NAME("NAME"),
-    SURNAME("SURNAME");
+    SURNAME("SURNAME"),
+    BIRTH("BIRTH"),
+    GENDER("GENDER"),
+    ADDRESS("ADDRESS");
 
 
     private final String command;

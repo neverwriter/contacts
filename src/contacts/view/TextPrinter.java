@@ -21,7 +21,8 @@ public class TextPrinter {
     private final static String SELECT_RECORD = "Select a record: ";
     private final static String RECORD_REMOVED = "The record removed!";
     private final static String NO_RECORDS = "No records to ";
-    private final static String SELECT_FIELD = "Select a field (name, surname, birth, gender number): ";
+    private final static String SELECT_FIELD_PERSON = "Select a field (name, surname, birth, gender, number): ";
+    private final static String SELECT_FIELD_ORGANIZATION = "Select a field (name, address, number): ";
     private final static String ENTER_TYP_OF_CONTACT = "Enter the type (person, organization): ";
 
     public static void printEnterName() {
@@ -99,8 +100,12 @@ public class TextPrinter {
         System.out.printf("The Phone Book has %d records.\n", numberOfRecords);
     }
 
-    public static void printSelectField(){
-        System.out.print(SELECT_FIELD);
+    public static void printSelectFieldPerson(){
+        System.out.print(SELECT_FIELD_PERSON);
+    }
+
+    public static void printSelectFieldOrganization(){
+        System.out.print(SELECT_FIELD_ORGANIZATION);
     }
 
     public static void printEnterTypeOfContact() {
@@ -108,6 +113,6 @@ public class TextPrinter {
     }
 
     public static void printNextLine() {
-        System.out.print("\n");
+        System.out.print("\n\n");
     }
 }

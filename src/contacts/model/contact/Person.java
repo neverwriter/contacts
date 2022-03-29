@@ -27,16 +27,28 @@ public class Person extends Contact {
         this.surname = surname;
     }
 
-    public void setPhoneNumber(PhoneNumber phoneNumber) {
+    public void setPhoneNumber(String phoneNumberString) {
+        PhoneNumber phoneNumber = new PhoneNumber();
+        phoneNumber.setPhoneNumber(phoneNumberString);
         super.phoneNumber = phoneNumber;
     }
 
     public void setBirthDate(String birthDate) {
-        this.birthDate = birthDate;
+        if(InputVerification.isBirthDateValid(birthDate)){
+            this.birthDate = birthDate;
+        } else {
+            TextPrinter.printBirthDateWrong();
+            this.birthDate = "[no data]";
+        }
     }
 
     public void setGender(String gender) {
-        this.gender = gender;
+        if(InputVerification.isGenderValid(gender)){
+            this.gender = gender;
+        } else {
+            TextPrinter.printGenderWrong();
+            this.gender = "[no data]";
+        }
     }
 
     @Override

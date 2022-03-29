@@ -1,7 +1,12 @@
 package contacts.controller.handler.strategy;
 
 import contacts.controller.command.Command;
+import contacts.controller.handler.strategy.edit.EditContext;
+import contacts.controller.handler.strategy.edit.EditOrganizationStrategy;
+import contacts.controller.handler.strategy.edit.EditPersonStrategy;
 import contacts.model.contact.Contact;
+import contacts.model.contact.Organization;
+import contacts.model.contact.Person;
 import contacts.model.db.ContactsRepository;
 import contacts.view.TextPrinter;
 
@@ -22,42 +27,20 @@ public class TaskEditStrategy implements TaskHandlerStrategy {
 
         Contact contactForEdition = taskHandler.getContactByItsNumber(contactsRepository);
 
-//            Scanner scanner = new Scanner(System.in);
-//
-//            TextPrinter.printSelectField();
-//
-//            String inputText = CommandReader.readCommand();
-//
-//            Command fieldSelector = Command.valueOf(inputText.toUpperCase(Locale.ROOT));
-//
-//            switch (fieldSelector){
-//
-//                case NAME:
-//                    TextPrinter.printEnterName();
-//                    contactForEdition.setName(scanner.nextLine());
-//                    break;
-//
-//                case SURNAME:
-//                    TextPrinter.printEnterSurname();
-//                    contactForEdition.setSurname(scanner.nextLine());
-//                    break;
-//
-//                case NUMBER:
-//                    TextPrinter.printEnterPhoneNumber();
-//                    contactForEdition.setPhoneNumber(scanner.nextLine());
-//                    break;
-//
-//                default:
-//                    System.out.println("Wrong field name");
-//                    break;
-//
-//            }
-//
-//            contactsRepository.updateContactByNumber(contactForEdition, contactNumber);
+        EditContext editContext = new EditContext();
 
-//        }
+        if (Person.class == contactForEdition.getClass()) {
+            editContext.setEditStrategy(new EditPersonStrategy());
+        } else if (Organization.class == contactForEdition.getClass()) {
+            editContext.setEditStrategy(new EditOrganizationStrategy());
+        }
 
+        editContext.executeStrategy(contactForEdition);
+
+        contactsRepository.updateContactByNumber(contactForEdition, taskHandler.getContactNumber());
 
     }
 
+
 }
+

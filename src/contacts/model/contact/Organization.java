@@ -10,6 +10,20 @@ public class Organization extends Contact{
 
     }
 
+    public void setName(String name) {
+        super.name = name;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public void setPhoneNumber(String phoneNumberString) {
+        PhoneNumber phoneNumber = new PhoneNumber();
+        phoneNumber.setPhoneNumber(phoneNumberString);
+        super.phoneNumber = phoneNumber;
+    }
+
     @Override
     public String nameToString() {
         return super.name;
