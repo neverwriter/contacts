@@ -1,6 +1,8 @@
 package contacts.model.contact;
 
-public class Organization extends Contact{
+import java.io.Serializable;
+
+public class Organization extends Contact implements Serializable {
 
     private String address;
 

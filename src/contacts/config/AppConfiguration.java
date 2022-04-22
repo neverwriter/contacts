@@ -1,6 +1,7 @@
 package contacts.config;
 
 import contacts.model.repository.ContactRepository;
+import contacts.model.repository.FileContactRepository;
 
 /**
  * Main configuration class as Singleton
@@ -14,6 +15,8 @@ public class AppConfiguration {
     private static AppConfiguration appConfigurationInstance;
 
     private ContactRepository contactRepository;
+
+    private String fileContactRepositoryDirectory;
 
     private AppConfiguration() {}
 
@@ -31,5 +34,13 @@ public class AppConfiguration {
 
     public void setContactRepository(ContactRepository contactRepository) {
         this.contactRepository = contactRepository;
+    }
+
+    public String getFileContactRepositoryDirectory() {
+        return fileContactRepositoryDirectory;
+    }
+
+    public void setFileContactRepositoryDirectory(String fileContactRepositoryDirectory) {
+        this.fileContactRepositoryDirectory = fileContactRepositoryDirectory;
     }
 }
