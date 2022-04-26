@@ -1,6 +1,11 @@
 package contacts.model.contact;
 
 import java.io.Serializable;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Locale;
 
 public class Organization extends Contact implements Serializable {
 
@@ -27,8 +32,29 @@ public class Organization extends Contact implements Serializable {
     }
 
     @Override
+    public List<String> getEditableFields() {
+        List<String> editableList=new ArrayList<>();
+        editableList.add("name");
+        editableList.add("address");
+        editableList.add("phoneNumber");
+        return editableList;
+    }
+
+    @Override
     public String nameToString() {
         return super.name;
+    }
+
+    @Override
+    public void editField(String fieldName, String fieldValue) throws InvocationTargetException, IllegalAccessException {
+        Method[] methods= getClass().getMethods();
+        String methodName="set"+fieldName.substring(0,1).toUpperCase(Locale.ROOT)+fieldName.substring(1);
+        for(Method method:methods){
+            if(method.toString().equals(methodName)){
+                method.invoke(this,fieldValue);
+                return;
+            }
+        }
     }
 
     @Override
