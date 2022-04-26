@@ -10,3 +10,4 @@ build
 
 # Ignore out directory
 out
+/src/contacts/Main2.java

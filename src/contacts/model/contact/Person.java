@@ -4,6 +4,11 @@ import contacts.controller.verification.InputVerification;
 import contacts.view.TextPrinter;
 
 import java.io.Serializable;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Locale;
 
 public class Person extends Contact implements Serializable {
 
@@ -67,6 +72,29 @@ public class Person extends Contact implements Serializable {
                 "\nNumber: " + super.phoneNumber.getPhoneNumber() +
                 "\nTime created: " + super.timeOfCreation.withSecond(0).withNano(0) +
                 "\nTime last edit: " + super.timeOfLastEdit.withSecond(0).withNano(0);
+    }
+
+    @Override
+    public List<String> getEditableFields() {
+        List<String> editableList=new ArrayList<>();
+        editableList.add("name");
+        editableList.add("surname");
+        editableList.add("birthDate");
+        editableList.add("phoneNumber");
+        editableList.add("gender");
+        return editableList;
+    }
+
+    @Override
+    public void editField(String fieldName, String fieldValue) throws InvocationTargetException, IllegalAccessException {
+        Method[] methods= getClass().getMethods();
+        String methodName="set"+fieldName.substring(0,1).toUpperCase(Locale.ROOT)+fieldName.substring(1);
+        for(Method method:methods){
+            if(method.getName().equals(methodName)){
+                method.invoke(this,fieldValue);
+                return;
+            }
+        }
     }
 
     public static class PersonBuilder {
