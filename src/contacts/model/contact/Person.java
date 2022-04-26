@@ -3,7 +3,9 @@ package contacts.model.contact;
 import contacts.controller.verification.InputVerification;
 import contacts.view.TextPrinter;
 
-public class Person extends Contact {
+import java.io.Serializable;
+
+public class Person extends Contact implements Serializable {
 
     private String surname;
     private String birthDate;
@@ -12,7 +14,6 @@ public class Person extends Contact {
 
     private Person(String name, String surname, PhoneNumber phoneNumber, String birthDate, String gender) {
         super(name, phoneNumber);
-        this.name = name;
         this.surname = surname;
         this.birthDate = birthDate;
         this.gender = gender;

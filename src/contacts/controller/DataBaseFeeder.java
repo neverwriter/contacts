@@ -1,14 +1,15 @@
 package contacts.controller;
 
+import contacts.config.AppConfiguration;
 import contacts.model.contact.Contact;
 import contacts.model.contact.Organization;
 import contacts.model.contact.Person;
-import contacts.model.db.ContactsRepository;
+import contacts.model.repository.ContactRepository;
 
 public class DataBaseFeeder {
 
     public static void feedDataBase(){
-        ContactsRepository contactsRepository = ContactsRepository.getInstance();
+        ContactRepository contactRepository = AppConfiguration.getInstance().getContactRepository();
 
         Person.PersonBuilder personBuilder = new Person.PersonBuilder();
 
@@ -24,7 +25,7 @@ public class DataBaseFeeder {
 
         Contact contact = personBuilder.build();
 
-        contactsRepository.addContact(contact);
+        contactRepository.addContact(contact);
 
         Organization.OrganizationBuilder organizationBuilder = new Organization.OrganizationBuilder();
 
@@ -36,7 +37,7 @@ public class DataBaseFeeder {
 
         Contact contact1 = organizationBuilder.build();
 
-        contactsRepository.addContact(contact1);
+        contactRepository.addContact(contact1);
 
     }
 }

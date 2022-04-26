@@ -1,8 +1,9 @@
 package contacts.model.contact;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
-public abstract class Contact {
+public abstract class Contact implements Serializable {
 
     protected String name;
     protected PhoneNumber phoneNumber;

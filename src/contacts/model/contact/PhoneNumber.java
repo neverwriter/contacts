@@ -3,7 +3,9 @@ package contacts.model.contact;
 import contacts.controller.verification.InputVerification;
 import contacts.view.TextPrinter;
 
-public class PhoneNumber {
+import java.io.Serializable;
+
+public class PhoneNumber implements Serializable {
     private String phoneNumber;
 
     public void setPhoneNumber(String phoneNumber) {
