@@ -10,6 +10,8 @@ build
 
 # Ignore out directory
 out
+/src/contacts/Main2.java
+
 
 # Ignore Academy tests
-test/ContactsTest.java
+/test/ContactsTest.java
