@@ -4,9 +4,11 @@ import contacts.controller.verification.InputVerification;
 import contacts.view.TextPrinter;
 
 import java.io.Serializable;
+import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
 
@@ -76,12 +78,17 @@ public class Person extends Contact implements Serializable {
 
     @Override
     public List<String> getEditableFields() {
-        List<String> editableList=new ArrayList<>();
-        editableList.add("name");
-        editableList.add("surname");
-        editableList.add("birthDate");
-        editableList.add("phoneNumber");
-        editableList.add("gender");
+        List<String> editableList = new ArrayList<>();
+        Field[] contactFields = Contact.class.getDeclaredFields();
+        Field[] personFields = Person.class.getDeclaredFields();
+        Field[] allFields = new Field[contactFields.length + personFields.length];
+        Arrays.setAll(allFields, i ->
+                (i < contactFields.length ? contactFields[i] : personFields[i - contactFields.length]));
+        for (Field field: allFields) {
+            if(!field.getName().equals("timeOfCreation") && !field.getName().equals("timeOfLastEdit")){
+            editableList.add(field.getName());
+            }
+        }
         return editableList;
     }
 

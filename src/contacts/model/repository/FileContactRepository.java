@@ -10,7 +10,7 @@ public class FileContactRepository implements ContactRepository {
 
     private static FileContactRepository instance;
 
-    private final ArrayList<Contact> fileContactRepository = new ArrayList<>();
+    private ArrayList<Contact> fileContactRepository = new ArrayList<>();
 
     private FileContactRepository() {
     }
@@ -29,11 +29,19 @@ public class FileContactRepository implements ContactRepository {
 
     @Override
     public Contact getContactByNumber(int contactNumber) {
-        return null;
+
+        this.fileContactRepository = getAllContacts();
+
+        return fileContactRepository.get(contactNumber - 1);
     }
 
     @Override
     public void updateContactByNumber(Contact editedContact, int contactNumber) {
+        this.fileContactRepository = getAllContacts();
+
+        fileContactRepository.set(contactNumber - 1, editedContact);
+
+        insertInRepository();
 
     }
 
@@ -41,17 +49,14 @@ public class FileContactRepository implements ContactRepository {
     public void addContact(Contact newContact) {
         fileContactRepository.add(newContact);
 
-        try {
-            serialize(fileContactRepository, AppConfiguration.getInstance().getFileContactRepositoryDirectory());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        insertInRepository();
 
     }
 
     @Override
     public int getNumberOfContacts() {
-        return 0;
+
+        return getAllContacts().size();
     }
 
     @Override
@@ -65,6 +70,14 @@ public class FileContactRepository implements ContactRepository {
             e.printStackTrace();
         }
         return contacts;
+    }
+
+    private void insertInRepository() {
+        try {
+            serialize(fileContactRepository, AppConfiguration.getInstance().getFileContactRepositoryDirectory());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override

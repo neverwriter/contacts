@@ -3,7 +3,6 @@ package contacts.controller.handler.strategy;
 import contacts.controller.command.CommandReader;
 import contacts.model.contact.Contact;
 import contacts.model.repository.ContactRepository;
-import contacts.model.repository.InMemoryContactRepository;
 import contacts.view.TextPrinter;
 
 public class TaskHandler {
@@ -33,6 +32,7 @@ public class TaskHandler {
         if (contactRepository.getNumberOfContacts() >= contactNumber) {
             return contactRepository.getContactByNumber(contactNumber);
         }
- return null;
+
+        return null;
     }
 }

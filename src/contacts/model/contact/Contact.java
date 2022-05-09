@@ -1,12 +1,8 @@
 package contacts.model.contact;
 
 import java.io.Serializable;
-import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public abstract class Contact implements Serializable {
@@ -42,15 +38,14 @@ public abstract class Contact implements Serializable {
         this.timeOfCreation = timeOfCreation;
     }
 
-    public List<String> getEditableFields(){
-       List<String> editableFields=new ArrayList<>();
-       editableFields.add("name");
-       editableFields.add("phoneNumber");
-       return  editableFields;
-    }
+    /**
+     * @author owais34
+     * @return
+     */
+    public abstract List<String> getEditableFields();
 
     public void editField(String fieldName,String fieldValue) throws InvocationTargetException, IllegalAccessException {
-        Method method[]=this.getClass().getMethods();
-        System.out.println(Arrays.toString(method));
+       // Method[] method =this.getClass().getMethods();
+       // System.out.println(Arrays.toString(method));
     }
 }

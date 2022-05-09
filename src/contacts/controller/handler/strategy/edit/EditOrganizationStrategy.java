@@ -17,7 +17,7 @@ public class EditOrganizationStrategy implements EditStrategy{
 
         Organization contactForEdition = (Organization) contact;
 
-        TextPrinter.printSelectFieldOrganization();
+        TextPrinter.printSelectField(contact.getEditableFields());
 
         String inputText = CommandReader.readCommand();
 

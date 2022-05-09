@@ -1,9 +1,11 @@
 package contacts.model.contact;
 
 import java.io.Serializable;
+import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
 
@@ -33,10 +35,17 @@ public class Organization extends Contact implements Serializable {
 
     @Override
     public List<String> getEditableFields() {
-        List<String> editableList=new ArrayList<>();
-        editableList.add("name");
-        editableList.add("address");
-        editableList.add("phoneNumber");
+        List<String> editableList = new ArrayList<>();
+        Field[] contactFields = Contact.class.getDeclaredFields();
+        Field[] organizationFields = Organization.class.getDeclaredFields();
+        Field[] allFields = new Field[contactFields.length + organizationFields.length];
+        Arrays.setAll(allFields, i ->
+                (i < contactFields.length ? contactFields[i] : organizationFields[i - contactFields.length]));
+        for (Field field: allFields) {
+            if(!field.getName().equals("timeOfCreation") && !field.getName().equals("timeOfLastEdit")){
+                editableList.add(field.getName());
+            }
+        }
         return editableList;
     }
 
@@ -47,7 +56,7 @@ public class Organization extends Contact implements Serializable {
 
     @Override
     public void editField(String fieldName, String fieldValue) throws InvocationTargetException, IllegalAccessException {
-        Method[] methods= getClass().getMethods();
+        Method[] methods = getClass().getMethods();
         String methodName="set"+fieldName.substring(0,1).toUpperCase(Locale.ROOT)+fieldName.substring(1);
         for(Method method:methods){
             if(method.toString().equals(methodName)){
