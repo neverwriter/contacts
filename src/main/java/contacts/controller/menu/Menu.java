@@ -64,6 +64,11 @@ public class Menu {
                         DataBaseFeeder.feedDataBase();
                         break;
 
+                    case SEARCH:
+                        taskHandlerContext.setTaskHandlerStrategy(new TaskSearchStrategy());
+                        taskHandlerContext.executeStrategy(command);
+                        break;
+
                     case EXIT:
                         isRun = false;
 //                        TextPrinter.printNextLine();

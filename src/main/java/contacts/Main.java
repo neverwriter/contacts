@@ -5,6 +5,12 @@ import contacts.controller.menu.Menu;
 import contacts.model.repository.ContactRepository;
 import contacts.model.repository.FileContactRepository;
 
+
+/**
+ * Application to organize contacts
+ *
+ * @author Patryk Lewczuk
+ */
 public class Main {
     public static void main(String[] args) {
 
@@ -13,7 +19,6 @@ public class Main {
 
         appConfiguration.setContactRepository(contactRepository);
         appConfiguration.setFileContactRepositoryDirectory("contactRepository.txt");
-
 
         Menu.menu();
 

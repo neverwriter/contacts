@@ -6,9 +6,16 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
+/**
+ * Class to print text in console
+ *
+ * @author Patryk Lewczuk
+ */
+
 public class TextPrinter {
 
     private final static String ENTER = "Enter %s: ";
+    private final static String ENTER_SEARCH_QUERY = "Enter search query: ";
     private final static String ENTER_NAME = "Enter the name: ";
     private final static String ENTER_SURNAME = "Enter the surname: ";
     private final static String ENTER_PHONE_NUMBER = "Enter the number: ";
@@ -19,15 +26,16 @@ public class TextPrinter {
     private final static String GENDER_WRONG = "Bad gender!";
     private final static String RECORD_CREATED = "The record added.";
     private final static String PHONE_NUMBER_WRONG = "Wrong number format!";
-    private final static String ENTER_ACTION = "Enter action (add, remove, edit, count, info, exit): ";
+    private final static String ENTER_ACTION = "[menu] Enter action (add, remove, edit, count, info, exit): ";
     private final static String SELECT_RECORD = "Select a record: ";
     private final static String RECORD_REMOVED = "The record removed!";
     private final static String NO_RECORDS = "No records to ";
     private final static String SELECT_FIELD_PREFIX = "Select a field (";
     private final static String SELECT_FIELD_SUFFIX = "): ";
     private final static String ENTER_TYP_OF_CONTACT = "Enter the type (person, organization): ";
+    private final static String SEARCH_RESULT = "Found %d results: ";
 
-    public static void printEnterField(String fieldName){
+    public static void printEnterField(String fieldName) {
         System.out.printf(ENTER, fieldName);
     }
 
@@ -118,7 +126,7 @@ public class TextPrinter {
             stringBuilder.append(fieldName).append(", ");
 
         }
-        stringBuilder.delete(stringBuilder.length()-2,stringBuilder.length());
+        stringBuilder.delete(stringBuilder.length() - 2, stringBuilder.length());
 
         stringBuilder.append(SELECT_FIELD_SUFFIX);
 
@@ -132,4 +140,10 @@ public class TextPrinter {
     public static void printNextLine() {
         System.out.print("\n\n");
     }
+
+    public static void printEnterSearchQuery() {
+        System.out.print(ENTER_SEARCH_QUERY);
+    }
+
+    public static void printFoundSearchResults(int numberOfResults) {System.out.printf(SEARCH_RESULT, numberOfResults);}
 }

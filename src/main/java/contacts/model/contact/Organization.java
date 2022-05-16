@@ -11,6 +11,8 @@ import java.util.Locale;
 
 public class Organization extends Contact implements Serializable {
 
+    private static final long serialVersionUID = 1L;
+
     private String address;
 
     private Organization(String name, String address, PhoneNumber phoneNumber) {
@@ -64,6 +66,13 @@ public class Organization extends Contact implements Serializable {
                 return;
             }
         }
+    }
+
+    @Override
+    public String getAppendedAllFields() {
+        return super.name +
+                address +
+                super.phoneNumber.getPhoneNumber();
     }
 
     @Override

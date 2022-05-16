@@ -2,7 +2,6 @@ package contacts.model.contact;
 
 import contacts.controller.verification.InputVerification;
 import contacts.view.TextPrinter;
-
 import java.io.Serializable;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
@@ -12,7 +11,13 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
 
+
+/** Class describing a contact of person object
+ *
+ */
 public class Person extends Contact implements Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     private String surname;
     private String birthDate;
@@ -102,6 +107,15 @@ public class Person extends Contact implements Serializable {
                 return;
             }
         }
+    }
+
+    @Override
+    public String getAppendedAllFields() {
+        return super.name +
+                surname +
+                birthDate +
+                gender +
+                super.phoneNumber.getPhoneNumber();
     }
 
     public static class PersonBuilder {

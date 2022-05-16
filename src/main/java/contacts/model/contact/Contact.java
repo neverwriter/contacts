@@ -7,6 +7,8 @@ import java.util.List;
 
 public abstract class Contact implements Serializable {
 
+    private static final long serialVersionUID = 1L;
+
     protected String name;
     protected PhoneNumber phoneNumber;
     protected LocalDateTime timeOfCreation;
@@ -43,6 +45,8 @@ public abstract class Contact implements Serializable {
      * @return
      */
     public abstract List<String> getEditableFields();
+
+    public abstract String getAppendedAllFields();
 
     public void editField(String fieldName,String fieldValue) throws InvocationTargetException, IllegalAccessException {
        // Method[] method =this.getClass().getMethods();
