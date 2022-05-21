@@ -5,6 +5,7 @@ import contacts.model.contact.Contact;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 
 /**
  * Class to print text in console
@@ -26,14 +27,18 @@ public class TextPrinter {
     private final static String GENDER_WRONG = "Bad gender!";
     private final static String RECORD_CREATED = "The record added.";
     private final static String PHONE_NUMBER_WRONG = "Wrong number format!";
-    private final static String ENTER_ACTION = "[menu] Enter action (add, remove, edit, count, info, exit): ";
+    private final static String ENTER_ACTION = "[menu] Enter action (add, list, search, count, exit): ";
+    private final static String ENTER_SEARCH_ACTION = "[search] Enter action ([number], back, again): ";
+    private final static String ENTER_LIST_ACTION = "[list] Enter action ([number], back): ";
     private final static String SELECT_RECORD = "Select a record: ";
+    private final static String SAVED = "Saved";
     private final static String RECORD_REMOVED = "The record removed!";
     private final static String NO_RECORDS = "No records to ";
     private final static String SELECT_FIELD_PREFIX = "Select a field (";
     private final static String SELECT_FIELD_SUFFIX = "): ";
     private final static String ENTER_TYP_OF_CONTACT = "Enter the type (person, organization): ";
-    private final static String SEARCH_RESULT = "Found %d results: ";
+    private final static String SEARCH_RESULT = "Found %d results: \n";
+    private static final String ENTER_RECORD_ACTION = "[record] Enter action (edit, delete, menu): ";
 
     public static void printEnterField(String fieldName) {
         System.out.printf(ENTER, fieldName);
@@ -96,6 +101,18 @@ public class TextPrinter {
 
     }
 
+    public static void printContactMap(Map<Integer,Contact> contactMap) {
+
+        int counter = 1;
+
+        for (Map.Entry<Integer, Contact> entry : contactMap.entrySet()) {
+
+            System.out.printf("%d. %s\n", counter, entry.getValue().nameToString());
+
+            counter++;
+        }
+    }
+
     public static void printContact(Contact contact) {
         System.out.println(contact.toString());
     }
@@ -146,4 +163,20 @@ public class TextPrinter {
     }
 
     public static void printFoundSearchResults(int numberOfResults) {System.out.printf(SEARCH_RESULT, numberOfResults);}
+
+    public static void printEnterSearchAction() {
+        System.out.print(ENTER_SEARCH_ACTION);
+    }
+
+    public static void printEnterRecordAction() {
+        System.out.print(ENTER_RECORD_ACTION);
+    }
+
+    public static void printEnterListAction() {
+        System.out.print(ENTER_LIST_ACTION);
+    }
+
+    public static void printSave() {
+        System.out.println(SAVED);
+    }
 }

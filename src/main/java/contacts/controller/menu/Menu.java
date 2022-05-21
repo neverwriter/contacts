@@ -35,18 +35,9 @@ public class Menu {
                 command = Command.valueOf(inputText.toUpperCase(Locale.ROOT));
 
                 switch (command) {
-                    case EDIT:
-                        taskHandlerContext.setTaskHandlerStrategy(new TaskEditStrategy());
-                        taskHandlerContext.executeStrategy(command);
-                        break;
 
                     case ADD:
                         taskHandlerContext.setTaskHandlerStrategy(new TaskAddStrategy());
-                        taskHandlerContext.executeStrategy(command);
-                        break;
-
-                    case REMOVE:
-                        taskHandlerContext.setTaskHandlerStrategy(new TaskRemoveStrategy());
                         taskHandlerContext.executeStrategy(command);
                         break;
 
@@ -55,7 +46,7 @@ public class Menu {
                         taskHandlerContext.executeStrategy(command);
                         break;
 
-                    case INFO:
+                    case LIST:
                         taskHandlerContext.setTaskHandlerStrategy(new TaskInfoStrategy());
                         taskHandlerContext.executeStrategy(command);
                         break;

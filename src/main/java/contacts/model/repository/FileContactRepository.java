@@ -32,14 +32,14 @@ public class FileContactRepository implements ContactRepository {
 
         this.fileContactRepository = getAllContacts();
 
-        return fileContactRepository.get(contactNumber - 1);
+        return fileContactRepository.get(contactNumber);
     }
 
     @Override
     public void updateContactByNumber(Contact editedContact, int contactNumber) {
         this.fileContactRepository = getAllContacts();
 
-        fileContactRepository.set(contactNumber - 1, editedContact);
+        fileContactRepository.set(contactNumber, editedContact);
 
         insertInRepository();
 

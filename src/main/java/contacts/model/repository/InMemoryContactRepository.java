@@ -50,12 +50,12 @@ public class InMemoryContactRepository implements ContactRepository {
 
     @Override
     public Contact getContactByNumber(int contactNumber){
-        return inMemoryContactRepository.get(contactNumber-1);
+        return inMemoryContactRepository.get(contactNumber);
     }
 
     @Override
     public void updateContactByNumber(Contact editedContact, int contactNumber){
-        inMemoryContactRepository.set(contactNumber-1, editedContact);
+        inMemoryContactRepository.set(contactNumber, editedContact);
     }
 
     @Override

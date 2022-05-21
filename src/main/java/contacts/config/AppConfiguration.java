@@ -1,7 +1,6 @@
 package contacts.config;
 
 import contacts.model.repository.ContactRepository;
-import contacts.model.repository.FileContactRepository;
 
 /**
  * Main configuration class as Singleton
@@ -17,6 +16,9 @@ public class AppConfiguration {
     private ContactRepository contactRepository;
 
     private String fileContactRepositoryDirectory;
+
+    /** Variable which controls if debug level logs are visible in console */
+    private final boolean debugLoggingEnable = false;
 
     private AppConfiguration() {}
 
@@ -42,5 +44,9 @@ public class AppConfiguration {
 
     public void setFileContactRepositoryDirectory(String fileContactRepositoryDirectory) {
         this.fileContactRepositoryDirectory = fileContactRepositoryDirectory;
+    }
+
+    public boolean isDebugLoggingEnable() {
+        return debugLoggingEnable;
     }
 }

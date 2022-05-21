@@ -2,19 +2,18 @@ package contacts.controller.handler.strategy.edit;
 
 import contacts.controller.command.CommandReader;
 import contacts.model.contact.Contact;
-import contacts.model.contact.Person;
 import contacts.view.TextPrinter;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.Scanner;
 
-public class EditPersonStrategy implements EditStrategy {
+public class EditConcreatStrategy implements EditStrategy {
 
     @Override
     public Contact execute(Contact contact) {
         Scanner scanner = new Scanner(System.in);
 
-        Person contactForEdition = (Person) contact;
+
 
         TextPrinter.printSelectField(contact.getEditableFields());
 
@@ -24,7 +23,7 @@ public class EditPersonStrategy implements EditStrategy {
 
         TextPrinter.printEnterField(fieldName);
         try {
-            contactForEdition.editField(fieldName, scanner.nextLine());
+            contact.editField(fieldName, scanner.nextLine());
         } catch (InvocationTargetException e) {
             e.printStackTrace();
         } catch (IllegalAccessException e) {
@@ -64,9 +63,9 @@ public class EditPersonStrategy implements EditStrategy {
 //
 //        }
 
-        contactForEdition.setTimeOfLastEdit();
+        contact.setTimeOfLastEdit();
 
-        return contactForEdition;
+        return contact;
 
     }
 }

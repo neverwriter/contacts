@@ -11,7 +11,7 @@ import java.util.Locale;
 
 public class Organization extends Contact implements Serializable {
 
-    private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 2L;
 
     private String address;
 
@@ -44,7 +44,7 @@ public class Organization extends Contact implements Serializable {
         Arrays.setAll(allFields, i ->
                 (i < contactFields.length ? contactFields[i] : organizationFields[i - contactFields.length]));
         for (Field field: allFields) {
-            if(!field.getName().equals("timeOfCreation") && !field.getName().equals("timeOfLastEdit")){
+            if(!field.getName().equals("timeOfCreation") && !field.getName().equals("timeOfLastEdit") && !field.getName().equals("serialVersionUID")){
                 editableList.add(field.getName());
             }
         }
@@ -61,7 +61,7 @@ public class Organization extends Contact implements Serializable {
         Method[] methods = getClass().getMethods();
         String methodName="set"+fieldName.substring(0,1).toUpperCase(Locale.ROOT)+fieldName.substring(1);
         for(Method method:methods){
-            if(method.toString().equals(methodName)){
+            if(method.getName().equals(methodName)){
                 method.invoke(this,fieldValue);
                 return;
             }

@@ -17,7 +17,7 @@ import java.util.Locale;
  */
 public class Person extends Contact implements Serializable {
 
-    private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 2L;
 
     private String surname;
     private String birthDate;
@@ -90,7 +90,9 @@ public class Person extends Contact implements Serializable {
         Arrays.setAll(allFields, i ->
                 (i < contactFields.length ? contactFields[i] : personFields[i - contactFields.length]));
         for (Field field: allFields) {
-            if(!field.getName().equals("timeOfCreation") && !field.getName().equals("timeOfLastEdit")){
+            if(!field.getName().equals("timeOfCreation") &&
+                    !field.getName().equals("timeOfLastEdit") &&
+                    !field.getName().equals("serialVersionUID")){
             editableList.add(field.getName());
             }
         }
