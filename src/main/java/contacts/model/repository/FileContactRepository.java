@@ -6,6 +6,9 @@ import contacts.model.contact.Contact;
 import java.io.*;
 import java.util.ArrayList;
 
+/** Repository for connection to file as database
+ *
+ */
 public class FileContactRepository implements ContactRepository {
 
     private static FileContactRepository instance;
@@ -55,8 +58,11 @@ public class FileContactRepository implements ContactRepository {
 
     @Override
     public int getNumberOfContacts() {
-
-        return getAllContacts().size();
+        try {
+            return getAllContacts().size();
+        } catch (Exception exception) {
+            return 0;
+        }
     }
 
     @Override
@@ -80,9 +86,20 @@ public class FileContactRepository implements ContactRepository {
         }
     }
 
+    /** Method check if there is 0 contact on the list.
+     *  Method will return zero even if file don't exist.
+     *
+     */
     @Override
     public boolean isContactListEmpty() {
-        return false;
+        try {
+
+            return getAllContacts().size() == 0;
+
+        } catch (Exception exception) {
+
+            return true;
+        }
     }
 
     /**
